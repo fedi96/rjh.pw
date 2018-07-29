@@ -41,7 +41,7 @@ function getdata(idw) {
 function getsports(idw) {
   if(!idw) idw=10;
   //var api ="sports.json"
-  var api = "https://api.rjh.fun/v3/json/sports/5b54a02f0a4cf304097644/"+idw;
+  var api = "http://api.sport365.link/v3/json/sports/5b54a02f0a4cf304097644/"+idw;
   $.getJSON(api, function (json) {
     if (json.sports) {
       var games = json.sports;
