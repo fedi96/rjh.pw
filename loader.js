@@ -69,6 +69,7 @@ function getsports(idw) {
       $("#tabs-icons-text").append('<div class="tab-content">No games.</div>');
     }
   });
+  console.log(lists);
   return lists;
 }
 
