@@ -1,5 +1,5 @@
 function getdata(idw) {
-  var api = "http://api.sport365.link/v3/json/feed/5b54a02f0a4cf304097644/"+idw+"/GMT0/960/540";
+  var api = "https://hls.rjh.fun/feeds.php?id="+idw;
   //var api = "soccer.json";
   $.getJSON(api, function (json) {
     if (json.events) {
@@ -41,7 +41,7 @@ function getdata(idw) {
 function getsports(idw) {
   if(!idw) idw=10;
   //var api ="sports.json"
-  var api = "http://api.sport365.link/v3/json/sports/5b54a02f0a4cf304097644/"+idw;
+  var api = "https://hls.rjh.fun/sports.php?id="+idw;
   $.getJSON(api, function (json) {
     if (json.sports) {
       var games = json.sports;
