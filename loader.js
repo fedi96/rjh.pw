@@ -50,11 +50,7 @@ function getsports(idw) {
         var id = game.id;
         var sport = game.sport;
         var feeds = game.feedContents;
-        if(sport == "Soccer"){
-          var game = `<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-${i}-tab" data-toggle="tab" href="#sport${i}" role="tab" aria-controls="sport${id}" aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>${sport}</a></li>`;
-          var content =`<div class="tab-pane fade active show"  id="sport${i}" role="tabpanel" aria-labelledby="sport${i}"><div class="tab-content" id="${sport}"></div></div>`;
-        }
-        else{
+        if(sport != "Soccer"){
         var game = `<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-${i}-tab" data-toggle="tab" href="#sport${i}" role="tab" aria-controls="sport${id}" aria-selected="false"><i class="ni ni-cloud-upload-96 mr-2"></i>${sport}</a></li>`;
         var content =`<div class="tab-pane fade"  id="sport${i}" role="tabpanel" aria-labelledby="sport${i}"><div class="tab-content" id="${sport}"></div></div>`;
       }
