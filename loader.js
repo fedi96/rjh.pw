@@ -1,5 +1,7 @@
-function getdata(lists) {
-  $.each(lists, function (g, idw) {
+function getdata() {
+  $.each(arguments, function (g, idw) {
+    if(g == arguments.length-1)
+      break;
   var idd=10;
   var api = "https://hls.rjh.fun/feeds.php?id="+idw+idd;
   //var api = "soccer.json";
@@ -45,7 +47,7 @@ function getsports(idw) {
   if(!idw) idw=10;
   //var api ="sports.json"
   var api = "https://hls.rjh.fun/sports.php?id="+idw;
-  var lists = [];
+  var lists = "";
   $.getJSON(api, function (json) {
     if (json.sports) {
       var games = json.sports;
@@ -53,7 +55,7 @@ function getsports(idw) {
         var id = game.id;
         var sport = game.sport;
         var feeds = game.feedContents;
-        lists.push(id)
+        lists = lists+id+',';
         if(sport == "Soccer"){
           var game = `<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0 active show" id="tabs-icons-text-${i}-tab" data-toggle="tab" href="#sport${i}" role="tab" aria-controls="sport${id}" aria-selected="true"><i class="ni ni-cloud-upload-96 mr-2"></i>${sport}</a></li>`;
           var content =`<div class="tab-pane fade active show"  id="sport${i}" role="tabpanel" aria-labelledby="sport${i}"><div class="tab-content" id="${sport}"></div></div>`;
@@ -70,7 +72,7 @@ function getsports(idw) {
     }
   });
   console.log(lists);
-  return lists;
+  return lists+'0';
 }
 
 
