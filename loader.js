@@ -1,7 +1,5 @@
 function getdata() {
   $.each(arguments, function (g, idw) {
-    if(g == arguments.length-1)
-      break;
   var idd=10;
   var api = "https://hls.rjh.fun/feeds.php?id="+idw+idd;
   //var api = "soccer.json";
