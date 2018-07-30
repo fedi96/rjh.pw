@@ -37,7 +37,7 @@ function getdata(lists) {
       $("#"+sport).append('<div class="tab-content">No games.</div>');
     }
   });
-} 
+});
 }
 
 
