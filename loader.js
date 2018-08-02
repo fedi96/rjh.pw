@@ -1,5 +1,5 @@
 function getdata(idw) {
-  var idd=10;
+  var idd=1;
   var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
   //var api = "soccer.json";
   $.getJSON(api, function (json) {
@@ -65,7 +65,7 @@ function getsports(idw) {
 }
 function loadgame(id,sp,y){
   if(!y)y=0;
-  var idd=10;
+  var idd=1;
   var api = "https://hls.rjh.fun/feeds.php?id="+sp+"/"+idd;
   //var api = "soccer.json";
   $.getJSON(api, function (json) {
