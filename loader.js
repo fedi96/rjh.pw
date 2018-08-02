@@ -67,35 +67,6 @@ function loadgame(id,sp,y){
   if(!y)y=0;
   var idd=10;
   var api = "https://hls.rjh.fun/feeds.php?id="+sp+"/"+idd;
-  var api = "soccer.json";
-  $.getJSON(api, function (json) {
-    if (json.events) {
-      var game = json.events[id];
-      var link = game.links ? game.links[y] : game.codes[y];
-      var ifrm = document.getElementById('stream');
-      if(game.links)
-      ifrm.src = link;
-      else
-      {
-      ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
-      ifrm.document.open();
-      ifrm.document.write(link);
-      ifrm.document.close();}
-      var link = game.links ? game.links : game.codes;
-      var links = '';
-      $.each(link, function (i, games) {
-        var l =`<li class="nav-item"><a onclick="game(${id},${sp},${i})" class="nav-link mb-sm-3 mb-md-0 active show"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
-        var h =`<li class="nav-item"><a onclick="game(${id},${sp},${i})" class="nav-link mb-sm-3 mb-md-0"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
-        links += y == i ? l : h;
-      });
-      $("#tabs-icons-text").html(links);
-    } else {
-      $("#"+sport).append('<div class="tab-content">No games.</div>');
-    }
-  });
-}
-function game(id,sp,y){
-  var api = "https://hls.rjh.fun/feeds.php?id="+sp+"/10";
   //var api = "soccer.json";
   $.getJSON(api, function (json) {
     if (json.events) {
@@ -113,8 +84,8 @@ function game(id,sp,y){
       var link = game.links ? game.links : game.codes;
       var links = '';
       $.each(link, function (i, games) {
-        var l =`<li class="nav-item"><a onclick="game(${id},${sp},${i});" class="nav-link mb-sm-3 mb-md-0 active show"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
-        var h =`<li class="nav-item"><a onclick="game(${id},${sp},${i});" class="nav-link mb-sm-3 mb-md-0"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        var l =`<li class="nav-item"><a onclick="loadgame(${id},${sp},${i});" class="nav-link mb-sm-3 mb-md-0 active show"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        var h =`<li class="nav-item"><a onclick="loadgame(${id},${sp},${i});" class="nav-link mb-sm-3 mb-md-0"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
         links += y == i ? l : h;
       });
       $("#tabs-icons-text").html(links);
