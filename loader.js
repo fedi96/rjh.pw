@@ -1,7 +1,7 @@
 function getdata(idw) {
   var idd=10;
   var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
-  //var api = "soccer.json";
+  var a//pi = "soccer.json";
   $.getJSON(api, function (json) {
     if (json.events) {
       var uniquegames = [];
@@ -26,7 +26,7 @@ function getdata(idw) {
         var gameLinks = '';
         $.each(game.content, function (j, media) {
           if(media.lang.substr(0, 4) != 'Hebr')
-          gameLinks = `${gameLinks}<a class="btn btn-sm btn-default float-center" href="#${media.id}">${media.lang.substr(0, 3)}</a>`;
+          gameLinks = `${gameLinks}<a class="btn btn-sm btn-default float-center" href="play.html?sport=${idw}&id=${media.id}">${media.lang.substr(0, 3)}</a>`;
         });
         var gameTitle = `<div class="card shadow col-lg-3"><div class="card-header">${title}</div><div class="card-body">${time}<br>${league}</div><div class="card-footer">`;
         if(gameLinks != '' && game.content[0].league.indexOf('Israel') ==-1)
@@ -41,8 +41,8 @@ function getdata(idw) {
 
 function getsports(idw) {
   if(!idw) idw=10;
-  //var api ="sports.json"
   var api = "https://hls.rjh.fun/sports.php?id="+idw;
+  //var api ="sports.json"
   $.getJSON(api, function (json) {
     if (json.sports) {
       var games = json.sports;
@@ -110,4 +110,4 @@ function getsports(idw) {
       $("#soccer").append('<div class="tab-content">No games.</div>');
     }
   });
-}*/
+*/
