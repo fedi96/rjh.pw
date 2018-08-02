@@ -1,0 +1,208 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="fedirjh">
+  <title>RJH Streams</title>
+  <link rel="canonical" href="https://rjh.pw" />
+  <!-- Favicon -->
+  <link href="./assets/img/brand/favicon.png" rel="icon" type="image/png">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+  <!-- Icons -->
+  <link href="./assets/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+  <link href="./assets/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <!-- Optional CSS -->
+  <!-- Argon CSS -->
+  <link type="text/css" href="./assets/css/argon.min.css?v=1.0.0" rel="stylesheet">
+  <!-- Docs CSS
+  <link type="text/css" href="./assets/css/docs.min.css" rel="stylesheet">-->
+</head>
+
+<body>
+  <header class="header-global">
+    <nav id="navbar-main" class="navbar navbar-main navbar-expand-lg navbar-transparent navbar-light">
+      <div class="container">
+        <a class="navbar-brand mr-lg-5" href="./index.html">
+          <b style="font-size: 20px;">rjh streams</b>
+        </a>
+
+        <div class="navbar-collapse collapse" id="navbar_global">
+          <ul class="navbar-nav align-items-lg-center ml-lg-auto">
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" title="Like us on Facebook">
+                <i class="fa fa-facebook-square"></i>
+                <span class="nav-link-inner--text d-lg-none">Facebook</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" title="Follow us on Instagram">
+                <i class="fa fa-instagram"></i>
+                <span class="nav-link-inner--text d-lg-none">Instagram</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" title="Follow us on Twitter">
+                <i class="fa fa-twitter-square"></i>
+                <span class="nav-link-inner--text d-lg-none">Twitter</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link nav-link-icon" href="#" target="_blank" data-toggle="tooltip" title="Star us on Github">
+                <i class="fa fa-github"></i>
+                <span class="nav-link-inner--text d-lg-none">Github</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <main>
+    <header class="position-relative">
+      <!-- Hero for FREE version -->
+      <section class="section-lined my-0">
+        <div class="line line-style-1 line-primary line-skew">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="container line-container d-flex align-items-center">
+            <div class="row justify-content-center">
+              <iframe width="100%" id="stream" height="540" frameborder=0 marginheight=0 marginwidth=0 scrolling=no src=''></iframe>
+              <br><br>
+              <div class="col-lg-12">
+                <div id="streams">
+                  <div class="nav-wrapper">
+                  <ul class="nav nav-pills nav-fill flex-column flex-md-row" id="tabs-icons-text" role="tablist">
+                  </ul>
+                </div>
+                </div>
+              </div>
+            </div>
+            </div>
+      </section>
+    </header>
+    <section class="section section-components pb-0" id="section-components">
+    </section>
+  </main>
+  <div id="dropdown-spy" class="dropdown-spy"></div>
+  <footer class="footer has-cards">
+    <div class="container">
+      <hr>
+      <div class="row align-items-center justify-content-md-between">
+        <div class="col-md-6">
+          <div class="copyright">
+            &copy; 2018
+            <a href="https://rjh.pw" target="_blank">Rjh Streams</a>. Inspired by
+            <a href="https://fedirjh.com" target="_blank">fedirjh</a>.
+          </div>
+        </div>
+        <div class="col-md-6">
+          <ul class="nav nav-footer justify-content-end">
+            <li class="nav-item">
+              <a href="https://rjh.fun" class="nav-link" target="_blank">Rjh</a>
+            </li>
+            <li class="nav-item">
+              <a href="https://fedirjh.com" class="nav-link" target="_blank">About Us</a>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link" target="_blank">Blog</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- Core -->
+  <script src="./assets/vendor/jquery/jquery.min.js"></script>
+  <script src="./assets/vendor/popper/popper.min.js"></script>
+  <script src="./assets/vendor/bootstrap/bootstrap.min.js"></script>
+  <script src="./assets/vendor/headroom/headroom.min.js"></script>
+  <!-- Optional JS -->
+  <script src="./assets/vendor/onscreen/onscreen.min.js"></script>
+  <script src="./assets/vendor/nouislider/js/nouislider.min.js"></script>
+  <script src="./assets/vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+  <script src="loader.js"></script>
+  <script type="text/javascript">
+  var url = new URL(window.location.href);
+  var id = url.searchParams.get("id");
+  var sp = url.searchParams.get("sport");
+  loadgame(id,sp);
+    $(document).ready(function() {
+
+      // $('a[href="#"]:not([data-toggle="dropdown])').click(function() {
+      // 	return false;
+      // })
+    })
+  </script>
+  <!-- Argon JS -->
+  <script src="./assets/js/argon.min.js?v=1.0.0"></script>
+  <style>
+  .section-lined .line.line-skew+.line-container {
+    padding-top: 8rem;
+    padding-bottom: 19rem;
+}
+  .fade:not(.show) {
+    display: none;
+}
+.card.shadow.col-lg-3 {
+    float: left;
+    background-image: url(//img.uefa.com/imgml/uefacom/uel/light_bg.svg);
+    background-size: cover;
+}
+.card {
+    margin: 0.25rem;
+    min-height: 275px;
+}
+.nav-pills .nav-link {
+    padding: .5rem 0.5rem;}
+.btn{
+    padding: .3rem .5rem;
+        margin-right: .5rem;
+        margin-bottom: .5rem;
+  }
+  .card-header {
+    min-height: 90px;
+    padding: 1.25rem 0.5rem;
+    background: transparent;
+    }
+
+.card-body {
+        padding: 0.5rem 1.5rem;
+        flex: 1 1 auto;
+        text-align: center;
+    }
+.card-footer {
+    padding: .5rem .25rem;
+    text-align: center;
+    background: transparent;
+}
+    .row.justify-content-center {
+    min-width: 107%;
+}
+.section-lined .line-style-1.line-primary {
+    background: linear-gradient(150deg,#34323e 15%,#4f4369 70%,#503b50 94%);
+    background-color: white;
+}
+#stream{
+  max-width: 940px;
+}
+li.nav-item {
+    cursor: pointer;
+}
+#streams {
+    padding-top: 3rem;
+}
+  </style>
+</body>
+
+</html>

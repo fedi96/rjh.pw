@@ -1,7 +1,7 @@
 function getdata(idw) {
   var idd=10;
   var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
-  var a//pi = "soccer.json";
+  //var api = "soccer.json";
   $.getJSON(api, function (json) {
     if (json.events) {
       var uniquegames = [];
@@ -63,51 +63,78 @@ function getsports(idw) {
     }
   });
 }
-
-
-
-
-
-
-
-
-
-
-      /*var games = json.events;
-      $.each(uniquegames, function (i, game) {
-        var gd = new Date(game.startDateTime);
-        var time = gd.toLocaleTimeString([], {
-          hour: '2-digit',
-          minute: '2-digit'
-        });
-        var sport = game.sport;
-        var league = game.league;
-        var title = game.event;
-        var audio = game.audio;
-        var definition = game.definition;
-        var gameTitle = gameTitle + `<div class="card shadow col-lg-3"><div class="card-body"><p class="description">${title}<br>${league}<br>${gd}<br>${i}</p></div></div>`;
-        var gameLinks = "";
-        $.each(game.content.media.epg, function (j, media) {
-          if (media.title === "MLBTV") {
-            $.each(media.items, function (k, item) {
-              var feedName = "";
-              if (item.mediaFeedType === "ISO" || item.mediaFeedType === "COMPOSITE") {
-                var feedNamek = item.feedName;
-              } else {
-                feedName = item.mediaFeedType;
-                if (item.callLetters !== "") {
-                  feedName = feedName + " (" + item.callLetters + ")";
-                }
-                gameLinks = gameLinks + createUrl("MLB", date, item.id, feedName, pk, gd.toLocaleString());
-              }
-            });
-          }
-        });
-        gameLinks = gameLinks + "</div></div>";
-        $("#soccer").append(gameTitle + "</div>");
+function loadgame(id,sp,y){
+  if(!y)y=0;
+  var idd=10;
+  var api = "https://hls.rjh.fun/feeds.php?id="+sp+"/"+idd;
+  var api = "soccer.json";
+  $.getJSON(api, function (json) {
+    if (json.events) {
+      var game = json.events[id];
+      var link = game.links ? game.links[y] : game.codes[y];
+      var ifrm = document.getElementById('stream');
+      if(game.links)
+      ifrm.src = link;
+      else
+      {
+      ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
+      ifrm.document.open();
+      ifrm.document.write(link);
+      ifrm.document.close();}
+      var link = game.links ? game.links : game.codes;
+      var links = '';
+      $.each(link, function (i, games) {
+        var l =`<li class="nav-item"><a onclick="game(${id},${sp},${i})" class="nav-link mb-sm-3 mb-md-0 active show"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        var h =`<li class="nav-item"><a onclick="game(${id},${sp},${i})" class="nav-link mb-sm-3 mb-md-0"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        links += y == i ? l : h;
       });
+      $("#tabs-icons-text").html(links);
     } else {
-      $("#soccer").append('<div class="tab-content">No games.</div>');
+      $("#"+sport).append('<div class="tab-content">No games.</div>');
     }
   });
-*/
+}
+function game(id,sp,y){
+  var api = "https://hls.rjh.fun/feeds.php?id="+sp+"/10";
+  //var api = "soccer.json";
+  $.getJSON(api, function (json) {
+    if (json.events) {
+      var game = json.events[id];
+      var link = game.links ? game.links[y] : game.codes[y];
+      var ifrm = document.getElementById('stream');
+      if(game.links)
+      ifrm.src = link;
+      else
+      {
+      ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
+      ifrm.document.open();
+      ifrm.document.write(link);
+      ifrm.document.close();}
+      var link = game.links ? game.links : game.codes;
+      var links = '';
+      $.each(link, function (i, games) {
+        var l =`<li class="nav-item"><a onclick="game(${id},${sp},${i});" class="nav-link mb-sm-3 mb-md-0 active show"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        var h =`<li class="nav-item"><a onclick="game(${id},${sp},${i});" class="nav-link mb-sm-3 mb-md-0"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        links += y == i ? l : h;
+      });
+      $("#tabs-icons-text").html(links);
+    } else {
+      $("#"+sport).append('<div class="tab-content">No games.</div>');
+    }
+  });
+}
+
+
+/*$.each(games, function (i, game) {
+  var gd = new Date(parseFloat(game.content[0].time)*1000);
+  var time = gd.toLocaleTimeString([], {day:'numeric' ,month:'short',hour: '2-digit',minute: '2-digit'});
+  var id = game.content[0].id;
+  var sport = game.content[0].sport;
+  var league = game.content[0].league;
+  var title = game.game;
+  var gameLinks = '';
+  var gameTitle = `<div class="card shadow col-lg-3"><div class="card-header">${title}</div><div class="card-body">${time}<br>${league}</div><div class="card-footer">`;
+  if(gameLinks != '' && game.content[0].league.indexOf('Israel') ==-1)
+  $("#"+sport).append(gameTitle + gameLinks + "</div></div>");
+});*/
+//$("#stream").append(link);
