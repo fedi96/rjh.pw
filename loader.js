@@ -1,5 +1,5 @@
 function getdata(idw) {
-  var idd=1;
+  var idd=10;
   var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
   //var api = "soccer.json";
   $.getJSON(api, function (json) {
@@ -65,7 +65,7 @@ function getsports(idw) {
 }
 function loadgame(id,sp,y){
   if(!y)y=0;
-  var idd=1;
+  var idd=10;
   var api = "https://hls.rjh.fun/feeds.php?id="+sp+"/"+idd;
   //var api = "soccer.json";
   $.getJSON(api, function (json) {
@@ -82,10 +82,11 @@ function loadgame(id,sp,y){
       ifrm.document.write(link);
       ifrm.document.close();}
       var link = game.links ? game.links : game.codes;
+      var t = game.links ? "link" : "code" ;
       var links = '';
       $.each(link, function (i, games) {
-        var l =`<li class="nav-item"><a onclick="loadgame(${id},${sp},${i});" class="nav-link mb-sm-3 mb-md-0 active show"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
-        var h =`<li class="nav-item"><a onclick="loadgame(${id},${sp},${i});" class="nav-link mb-sm-3 mb-md-0"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        var l =`<li class="nav-item"><a onclick="game(${link[i]},${i},${t});" class="link nav-link mb-sm-3 mb-md-0 active show" id="link${i}"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        var h =`<li class="nav-item"><a onclick="game(${link[i]},${i}}=,${t});" class="link nav-link mb-sm-3 mb-md-0" id="link${i}"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
         links += y == i ? l : h;
       });
       $("#tabs-icons-text").html(links);
@@ -93,6 +94,21 @@ function loadgame(id,sp,y){
       $("#"+sport).append('<div class="tab-content">No games.</div>');
     }
   });
+}
+function game(i,j,k){
+  var link = k == "link" ? "link" : "code";
+      var ifrm = document.getElementById('stream');
+      if(link == "link")
+      ifrm.src = i;
+      else
+      {
+      ifrm = ifrm.contentWindow || ifrm.contentDocument.document || ifrm.contentDocument;
+      ifrm.document.open();
+      ifrm.document.write(k);
+      ifrm.document.close();
+      }
+  $(".link").removeClass("active show");
+  $("#link"+j).addClass("active show");
 }
 
 
