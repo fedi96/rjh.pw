@@ -86,7 +86,7 @@ function loadgame(id,sp,y){
       var links = '';
       $.each(link, function (i, games) {
         var l =`<li class="nav-item"><a onclick="game(${link[i]},${i},${t});" class="link nav-link mb-sm-3 mb-md-0 active show" id="link${i}"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
-        var h =`<li class="nav-item"><a onclick="game(${link[i]},${i}}=,${t});" class="link nav-link mb-sm-3 mb-md-0" id="link${i}"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
+        var h =`<li class="nav-item"><a onclick="game(${link[i]},${i},${t});" class="link nav-link mb-sm-3 mb-md-0" id="link${i}"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
         links += y == i ? l : h;
       });
       $("#tabs-icons-text").html(links);
