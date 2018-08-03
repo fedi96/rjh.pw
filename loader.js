@@ -1,8 +1,8 @@
-function getdata(sporty,api) {
+function getdata(sporty,json) {
   //var idd=10;
   //var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
   //var api = "soccer.json";
-  $.getJSON(api, function (json) {
+  //$.getJSON(api, function (json) {
     if (json.events) {
       var uniquegames = [];
       $.each(json.events, function(i, el){
@@ -40,7 +40,7 @@ function getdata(sporty,api) {
     } else {
       //$("#"+sport).append('<div class="tab-content">No games.</div>');
     }
-  });
+  //});
 }
 
 
