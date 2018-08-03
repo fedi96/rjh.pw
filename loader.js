@@ -17,7 +17,7 @@ function getdata(idw,sporty,json) {
       games.push({'game': game,'content' : un});
       });
       $.each(games, function (i, game) {
-        console.log(i,game.content[0].sport,sporty,game.content[0].sport == sporty);
+        //console.log(i,game.content[0].sport,sporty,game.content[0].sport == sporty);
         if (game.content[0].sport == sporty){
         var gd = new Date(parseFloat(game.content[0].time)*1000);
         var time = gd.toLocaleTimeString([], {day:'numeric' ,month:'short',hour: '2-digit',minute: '2-digit'});
@@ -32,7 +32,7 @@ function getdata(idw,sporty,json) {
         });
         var gameTitle = `<div class="card shadow col-lg-3"><div class="card-header">${title}</div><div class="card-body">${time}<br>${league}</div><div class="card-footer">`;
         if(gameLinks != '' && game.content[0].league.indexOf('Israel') ==-1)
-          if(sport)
+          if(game.content[0].sport == sporty)
         $("#"+sport).append(gameTitle + gameLinks + "</div></div>");
           else
         $("#"+sport).append('<div class="tab-content">No games.</div>');
