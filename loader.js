@@ -47,8 +47,8 @@ function getdata(sporty,json) {
 function getsports(idw) {
   if(!idw) idw=10;
   var api = "https://hls.rjh.fun/sports.php?id="+idw;
-  var api2 ="https://hls.rjh.fun/feeds.php?id=10";
-  $.getJSON("", function (k) {
+  var api2;
+  $.getJSON("https://hls.rjh.fun/feeds.php?id=10", function (k) {
     api2 = k;
   });
   //var api ="sports.json"
