@@ -35,7 +35,7 @@ function getdata(idw,sporty,json) {
           if(game.content[0].sport == sporty)
         $("#"+sport).append(gameTitle + gameLinks + "</div></div>");
           else
-        $("#"+sport).append('<div class="tab-content">No games.</div>');
+        $("#"+sport.split(" ").join('-')).append('<div class="tab-content">No games.</div>');
         }
       }
       });
@@ -59,7 +59,7 @@ function getsports(idw) {
         var feeds = game.feedContents;
         if(sport != "Soccer"){
         var game = `<li class="nav-item"><a class="nav-link mb-sm-3 mb-md-0" id="tabs-icons-text-${i}-tab" data-toggle="tab" href="#sport${i}" role="tab" aria-controls="sport${id}" aria-selected="false"><i class="ni ni-cloud-upload-96 mr-2"></i>${sport}</a></li>`;
-        var content =`<div class="tab-pane fade"  id="sport${i}" role="tabpanel" aria-labelledby="sport${i}"><div class="tab-content" id="${sport}"></div></div>`;
+        var content =`<div class="tab-pane fade"  id="sport${i}" role="tabpanel" aria-labelledby="sport${i}"><div class="tab-content" id="${sport.split(" ").join('-')}"></div></div>`;
       }
         $("#tabs-icons-text").append(game);
         $("#myTabContent").append(content);
