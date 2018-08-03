@@ -17,6 +17,7 @@ function getdata(idw,sporty,json) {
       games.push({'game': game,'content' : un});
       });
       $.each(games, function (i, game) {
+        console.log(i,game.content[0].sport,sporty,game.content[0].sport == sporty);
         if (game.content[0].sport == sporty){
         var gd = new Date(parseFloat(game.content[0].time)*1000);
         var time = gd.toLocaleTimeString([], {day:'numeric' ,month:'short',hour: '2-digit',minute: '2-digit'});
@@ -61,7 +62,6 @@ function getsports(idw) {
       }
         $("#tabs-icons-text").append(game);
         $("#myTabContent").append(content);
-        console.log(sport,id);
         getdata(id,sport,k);
       });
     } else {
