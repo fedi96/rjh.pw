@@ -1,4 +1,4 @@
-function getdata(sporty,json) {
+function getdata(idw,sporty,json) {
   //var idd=10;
   //var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
   //var api = "soccer.json";
@@ -63,7 +63,7 @@ function getsports(idw) {
         $("#tabs-icons-text").append(game);
         $("#myTabContent").append(content);
        var api2;
-        getdata(sport,k);
+        getdata(id,sport,k);
       });
     } else {
       $("#tabs-icons-text").append('<div class="tab-content">No games.</div>');
