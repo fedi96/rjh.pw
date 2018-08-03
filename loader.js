@@ -62,7 +62,7 @@ function getsports(idw) {
       }
         $("#tabs-icons-text").append(game);
         $("#myTabContent").append(content);
-       var api2;
+        console.log(sport,id);
         getdata(id,sport,k);
       });
     } else {
