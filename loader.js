@@ -35,7 +35,6 @@ function getdata(sporty,api) {
         $("#"+sport).append(gameTitle + gameLinks + "</div></div>");
           else
         $("#"+sport).append('<div class="tab-content">No games.</div>');
-    }
       }
       });
     } else {
