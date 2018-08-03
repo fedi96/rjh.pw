@@ -47,11 +47,8 @@ function getdata(sporty,json) {
 function getsports(idw) {
   if(!idw) idw=10;
   var api = "https://hls.rjh.fun/sports.php?id="+idw;
-  var api2;
-  $.getJSON("https://hls.rjh.fun/feeds.php?id=10", function (k) {
-    api2 = k;
-  });
   //var api ="sports.json"
+  $.getJSON("https://hls.rjh.fun/feeds.php?id=10", function (k) {
   $.getJSON(api, function (json) {
     if (json.sports) {
       var games = json.sports;
@@ -65,11 +62,13 @@ function getsports(idw) {
       }
         $("#tabs-icons-text").append(game);
         $("#myTabContent").append(content);
-        getdata(sport,api2);
+       var api2;
+        getdata(sport,k);
       });
     } else {
       $("#tabs-icons-text").append('<div class="tab-content">No games.</div>');
     }
+  });
   });
 }
 function loadgame(id,sp,y){
