@@ -47,6 +47,10 @@ function getdata(sporty,json) {
 function getsports(idw) {
   if(!idw) idw=10;
   var api = "https://hls.rjh.fun/sports.php?id="+idw;
+  var api2 ="https://hls.rjh.fun/feeds.php?id=10";
+  $.getJSON("", function (k) {
+    api2 = k;
+  });
   //var api ="sports.json"
   $.getJSON(api, function (json) {
     if (json.sports) {
@@ -61,7 +65,7 @@ function getsports(idw) {
       }
         $("#tabs-icons-text").append(game);
         $("#myTabContent").append(content);
-        getdata(sport,api);
+        getdata(sport,api2);
       });
     } else {
       $("#tabs-icons-text").append('<div class="tab-content">No games.</div>');
