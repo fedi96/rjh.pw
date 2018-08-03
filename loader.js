@@ -3,7 +3,7 @@ function getdata(sporty,json) {
   //var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
   //var api = "soccer.json";
   //$.getJSON(api, function (json) {
-    if (json.events) {
+    if (json) {
       var uniquegames = [];
       $.each(json.events, function(i, el){
           if($.inArray(el.event, uniquegames) === -1) uniquegames.push(el.event);
