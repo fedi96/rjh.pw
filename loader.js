@@ -1,6 +1,6 @@
-function getdata(idw) {
-  var idd=10;
-  var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
+function getdata(sporty,api) {
+  //var idd=10;
+  //var api = "https://hls.rjh.fun/feeds.php?id="+idw+"/"+idd;
   //var api = "soccer.json";
   $.getJSON(api, function (json) {
     if (json.events) {
@@ -17,6 +17,7 @@ function getdata(idw) {
       games.push({'game': game,'content' : un});
       });
       $.each(games, function (i, game) {
+        if (game.content[0].sport == sporty){
         var gd = new Date(parseFloat(game.content[0].time)*1000);
         var time = gd.toLocaleTimeString([], {day:'numeric' ,month:'short',hour: '2-digit',minute: '2-digit'});
         var id = game.content[0].id;
@@ -31,6 +32,7 @@ function getdata(idw) {
         var gameTitle = `<div class="card shadow col-lg-3"><div class="card-header">${title}</div><div class="card-body">${time}<br>${league}</div><div class="card-footer">`;
         if(gameLinks != '' && game.content[0].league.indexOf('Israel') ==-1)
         $("#"+sport).append(gameTitle + gameLinks + "</div></div>");
+      }
       });
     } else {
       $("#"+sport).append('<div class="tab-content">No games.</div>');
@@ -56,7 +58,7 @@ function getsports(idw) {
       }
         $("#tabs-icons-text").append(game);
         $("#myTabContent").append(content);
-        getdata(id);
+        getdata(sport,api);
       });
     } else {
       $("#tabs-icons-text").append('<div class="tab-content">No games.</div>');
