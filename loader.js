@@ -33,7 +33,7 @@ function getdata(idw,sporty,json) {
         var gameLinks = '';
         $.each(game.content, function (j, media) {
           if(media.lang.substr(0, 4) != 'Hebr')
-          gameLinks = `${gameLinks}<a class="btn btn-sm btn-default float-center" href="play.html?id=${encodeURIComponent(JSON.stringify(media.link))}&type=${media.type}">${media.lang.substr(0, 3)}</a>`;
+          gameLinks = `${gameLinks}<a class="btn btn-sm btn-default float-center" href="play.html?id=${btoa(encodeURIComponent(JSON.stringify(media.link)))}&type=${media.type}">${media.lang.substr(0, 3)}</a>`;
         });
         var gameTitle = `<div class="card shadow col-lg-3"><div class="card-header">${title}</div><div class="card-body">${time}<br>${league}</div><div class="card-footer">`;
         //if(game.content[0].sport == 'Aussie Rules')
@@ -94,7 +94,7 @@ function loadgame(id,sp,y){
       ifrm.document.open();
       ifrm.document.write(link);
       ifrm.document.close();}
-      var link = JSON.parse(decodeURIComponent(id));
+      var link = JSON.parse(atob(decodeURIComponent(id)));
       var t = sp ;
       var links = '';
       $.each(link, function (i, games) {
