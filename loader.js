@@ -11,13 +11,18 @@ function getdata(idw,sporty,json) {
       var games = [];
       $.each(uniquegames,function(i, game){
         var un = [];
+        var link;
+        var type;
       $.each(json.events, function(j, el){
-          if(el.event == game) un.push({'id' : j,'lang' : el.audio,'time': el.startDateTime,'sport': el.sport,'league': el.league,'def': el.definition});
+        link = el.links ? el.links : el.codes;
+        type = el.links ? 'link' : 'code';
+          if(el.event == game) un.push({'id' : j,'lang' : el.audio,'time': el.startDateTime,'sport': el.sport,'league': el.league,'def': el.definition,'link': link,'type':type});
       });
       games.push({'game': game,'content' : un});
       });
+      //console.log(games);
       $.each(games, function (i, game) {
-        //console.log(i,game.content[0].sport,sporty,game.content[0].sport == sporty);
+        //console.log(i,game.content[0].sport,game.content[0].sport == 'Aussie Rules');
         if (game.content[0].sport == sporty){
         var gd = new Date(parseFloat(game.content[0].time)*1000);
         var time = gd.toLocaleTimeString([], {day:'numeric' ,month:'short',hour: '2-digit',minute: '2-digit'});
@@ -28,14 +33,13 @@ function getdata(idw,sporty,json) {
         var gameLinks = '';
         $.each(game.content, function (j, media) {
           if(media.lang.substr(0, 4) != 'Hebr')
-          gameLinks = `${gameLinks}<a class="btn btn-sm btn-default float-center" href="play.html?sport=${idw}&id=${media.id}">${media.lang.substr(0, 3)}</a>`;
+          gameLinks = `${gameLinks}<a class="btn btn-sm btn-default float-center" href="play.html?id=${btoa(JSON.stringify(media.link))}&type=${media.type}">${media.lang.substr(0, 3)}</a>`;
         });
         var gameTitle = `<div class="card shadow col-lg-3"><div class="card-header">${title}</div><div class="card-body">${time}<br>${league}</div><div class="card-footer">`;
+        if(game.content[0].sport == 'Aussie Rules')
+        //console.log(gameTitle + gameLinks + "</div></div>");
         if(gameLinks != '' && game.content[0].league.indexOf('Israel') ==-1){
-          if(game.content[0].sport == sporty)
         $("#"+sport.split(" ").join('-')).append(gameTitle + gameLinks + "</div></div>");
-          else
-        $("#"+sport.split(" ").join('-')).append('<div class="tab-content">No games.</div>');
         }
       }
       });
@@ -44,6 +48,7 @@ function getdata(idw,sporty,json) {
     }
   //});
 }
+
 
 
 function getsports(idw) {
@@ -74,14 +79,14 @@ function getsports(idw) {
 function loadgame(id,sp,y){
   if(!y)y=0;
   var idd=10;
-  var api = "https://hls.rjh.fun/feeds.php?id=10";
-  //var api = "soccer.json";
-  $.getJSON(api, function (json) {
-    if (json.events) {
-      var game = json.events[id];
-      var link = game.links ? game.links[y] : game.codes[y];
+  //var api = "https://hls.rjh.fun/feeds.php?id=10";
+  //var api = "sports.json";
+  //$.getJSON(api, function (json) {
+    if (id) {
+      var game = JSON.parse(atob(id));
+      var link = game[y];
       var ifrm = document.getElementById('stream');
-      if(game.links)
+      if(sp == 'link')
       ifrm.src = link;
       else
       {
@@ -89,8 +94,8 @@ function loadgame(id,sp,y){
       ifrm.document.open();
       ifrm.document.write(link);
       ifrm.document.close();}
-      var link = game.links ? game.links : game.codes;
-      var t = game.links ? "link" : "code" ;
+      var link = JSON.parse(atob(id));
+      var t = sp ;
       var links = '';
       $.each(link, function (i, games) {
         var l =`<li class="nav-item"><a onclick="game('${link[i]}',${i},'${t}');" class="link nav-link mb-sm-3 mb-md-0 active show" id="link${i}"><i class="ni ni-cloud-upload-96 mr-2"></i>Link ${i}</a></li>`;
@@ -101,7 +106,7 @@ function loadgame(id,sp,y){
     } else {
       $("#"+sport).append('<div class="tab-content">No games.</div>');
     }
-  });
+  //});
 }
 function game(i,j,k){
   var link = k == "link" ? "link" : "code";
@@ -118,7 +123,6 @@ function game(i,j,k){
   $(".link").removeClass("active show");
   $("#link"+j).addClass("active show");
 }
-
 
 /*$.each(games, function (i, game) {
   var gd = new Date(parseFloat(game.content[0].time)*1000);
