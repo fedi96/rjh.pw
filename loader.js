@@ -83,7 +83,7 @@ function loadgame(id,sp,y){
   //var api = "sports.json";
   //$.getJSON(api, function (json) {
     if (id) {
-      var game = JSON.parse(atob(decodeURIComponent(id)));
+      var game = JSON.parse(decodeURIComponent(atob(id)));
       var link = game[y];
       var ifrm = document.getElementById('stream');
       if(sp == 'link')
@@ -94,7 +94,7 @@ function loadgame(id,sp,y){
       ifrm.document.open();
       ifrm.document.write(link);
       ifrm.document.close();}
-      var link = JSON.parse(atob(decodeURIComponent(id)));
+      var link = JSON.parse(decodeURIComponent(atob(id)));
       var t = sp ;
       var links = '';
       $.each(link, function (i, games) {
