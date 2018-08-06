@@ -36,7 +36,7 @@ function getdata(idw,sporty,json) {
           gameLinks = `${gameLinks}<a class="btn btn-sm btn-default float-center" href="play.html?id=${btoa(JSON.stringify(media.link))}&type=${media.type}">${media.lang.substr(0, 3)}</a>`;
         });
         var gameTitle = `<div class="card shadow col-lg-3"><div class="card-header">${title}</div><div class="card-body">${time}<br>${league}</div><div class="card-footer">`;
-        if(game.content[0].sport == 'Aussie Rules')
+        //if(game.content[0].sport == 'Aussie Rules')
         //console.log(gameTitle + gameLinks + "</div></div>");
         if(gameLinks != '' && game.content[0].league.indexOf('Israel') ==-1){
         $("#"+sport.split(" ").join('-')).append(gameTitle + gameLinks + "</div></div>");
